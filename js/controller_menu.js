@@ -22,7 +22,8 @@ var controladorDeMenu=(function() {
 
   }
 
-  
+ 
+
 /*  function adicionaCidades(nome, cidade_id){
     contadorCidades ++
     var sala = $('<div>').attr('id','pills'+cidade_id).attr('aria-labelledby','tab_'+cidade_id).addClass('anchor')

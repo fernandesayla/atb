@@ -20,20 +20,66 @@ var controladorDeAtb=(function() {
 
 });
 */
-   var menuTabAnos =  $("#tabAnos");
+   var menuTabAnos =  $("#tabAnos")
    var primeiro = true;
   $.each(data.anos, function(index, value){
-        if (primeiro) {
-          menuTabAnos.append($('<li>').addClass("tab").append($('<a>').addClass("active").attr('href', "#ano" + value.ano).text("ATB "+ value.ano)) );
-        }else {
+
           menuTabAnos.append($('<li>').addClass("tab").append($('<a>').attr('href', "#ano" + value.ano).text("ATB "+ value.ano)) );
-        }
+       
   })
     menuTabAnos.append($('<li>').addClass("tab").append($('<a>').attr('href', "#anoAnteriores").text("Anteriores")) );
+
+      atbContentTabs(data)
+
+}
+function atbContentTabs(data){
+
+  //  var main = $('main')
+  let $primeiro  = true
+      data.anos.forEach(function(value){
+  //  $.each(data.anos, function(index, value){
+
+        //adicionaAtbContentTabs(data)
+        //<div id="test1" class="container"  >
+
+          var contentTab = $('<div>').attr('id' , 'ano'+value.ano);
+          //  <h2 class="header center blue-text text-darken-bb">ATB 2018</h2>
+
+          var titulo = $('<h2>').addClass('header center blue-text text-darken-bb').text('ATB '+value.ano);
+          let $semestreCard = $('<div>').addClass('row').attr('id' , 'ano'+value.ano);
+
+
+        //  $each(data.atb, )
+        //  console.log((value.ano).indexOf(data.atb.semestre));
+            data.semestres.forEach(function(semestres){
+                if (value.ano==semestres.ano) {
+                    let $col = $("<div>")
+                              .addClass("col s12 m12 l12 xl6")
+                    let $card = $("<div>")
+                              .addClass("card")
+                    let $cardContent = $("<div>")
+                              .addClass("card-content")
+                    let $cardContentTitle = $("<span>")
+                              .addClass("card-title").text(semestres.semestre + "º Semestre" )
+
+
+                    $semestreCard
+                        .append($col.append($card.append($cardContent.append($cardContentTitle))))
+
+                }
+            })
+
+                contentTab.append(titulo).append($semestreCard).prependTo('main')
+
+    })
+
 
 
 
 }
+
+
+
 
 
 /*  function adicionaCidades(nome, cidade_id){
